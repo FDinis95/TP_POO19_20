@@ -4,7 +4,10 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>Autodromo.h</itemPath>
+      <itemPath>Campeonato.h</itemPath>
       <itemPath>Carro.h</itemPath>
+      <itemPath>Sim.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -13,7 +16,10 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Autodromo.cpp</itemPath>
+      <itemPath>Campeonato.cpp</itemPath>
       <itemPath>Carro.cpp</itemPath>
+      <itemPath>Sim.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -38,9 +44,21 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="Autodromo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Autodromo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Campeonato.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Campeonato.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Carro.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Carro.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Sim.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Sim.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -65,9 +83,21 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Autodromo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Autodromo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Campeonato.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Campeonato.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Carro.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Carro.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Sim.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Sim.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
