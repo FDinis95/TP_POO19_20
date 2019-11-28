@@ -139,6 +139,87 @@ Sim::IniciaSim(){
 
 Sim::Modo2(){
     
+    string cmd, aux1, aux2;
+    string temp;
     
+    cout << "Modo 2\n" << endl;
     
+    do{
+        
+        aux1.clear();
+        aux2.clear();
+        
+        int valor1;
+        
+        cout << "Introduza o comando: " << "\n";
+        getline(cin, cmd);
+        
+        istringstream is(cmd);
+        
+        is >> temp >> aux1 >> aux2;
+        
+        if(temp.compare("campeonato") == 0){
+            if(aux1.empty() == true)
+                cout << "Nao introduziu nenhum valor\n" << endl;
+            else
+                cout << "Campeonato " << aux1 << endl;
+//                IniciaCampeonato(aux1);
+                
+        }else if(temp.compare("listacarros") == 0){
+            cout << "Lista Carros: " << endl;
+            //ListaCarros();
+        
+        }else if(temp.compare("carregabat") == 0){
+            if(aux1.empty() == true)
+                cout << "Nao introduziu nenhum valor\n" << endl;
+            else
+                cout << "Carrega Bateria: " << aux1 << " " << aux2 << endl;
+                // CarregaBateria(aux1, aux2); 
+            
+        }else if(temp.compare("carregatudo") == 0){
+            cout << "Carrega Tudo " << endl;
+            //CarregaTudo();
+            
+        }else if(temp.compare("corrida") == 0){
+            cout << "Corrida " << endl;
+            // IniciaCorrida();
+            
+        }else if(temp.compare("acidente") == 0){
+            if(aux1.empty() == true)
+                cout << "Nao introduziu nenhum valor\n" << endl;
+            else
+                cout << "Acidente " << aux1 << endl;
+                // ProvocaAcidente(aux1);
+            
+        }else if(temp.compare("stop") == 0){
+            if(aux1.empty() == true)
+                cout << "Nao introduziu nenhum valor\n" << endl;
+            else
+                cout << "Stop " << aux1 << endl;
+                // ParaCarro(aux1);)
+            
+        }else if(temp.compare("destroi") == 0){
+            if(aux1.empty() == true)
+                cout << "Nao introduziu nenhum valor\n" << endl;
+            else
+                cout << "Destroi " << aux1 << endl;
+                //DestroiCarro(aux1);
+            
+        }else if(temp.compare("passatempo") == 0){
+            if(aux1.empty() == true)
+                cout << "Nao introduziu nenhum valor\n" << endl;
+            else{
+                valor1 = stoi(aux1);
+                cout << "Passatempo " << valor1 << endl;
+                //Passatempo(valor1);
+            }
+            
+        }else if(temp.compare("log") == 0){
+            cout << "LOG " << endl;
+            //Log();
+            
+        }
+    }while(temp.compare("sair") != 0);
+    
+    exit(EXIT_SUCCESS);
 }

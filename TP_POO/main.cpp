@@ -12,7 +12,6 @@ int main(int argc, char** argv) {
     Sim sim;
     
     sim.IniciaSim();
-    sim.Modo2();
     
     Carro *carro;
     
