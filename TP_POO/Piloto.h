@@ -20,7 +20,11 @@
 #include <iostream>
 #include <sstream>
 
+#include "Carro.h"
+
 using namespace std;
+
+class Carro;
 
 class Piloto {
     
@@ -29,12 +33,43 @@ class Piloto {
     bool conduzir;
     string ordem;
     
+    Carro *carro;
+    
     
 public:
     Piloto(string n);
     Piloto(const Piloto& orig);
     virtual ~Piloto();
-private:
+    
+    string GetComportamento() const {
+        return comportamento;
+    }
+
+    void SetComportamento(string comportamento) {
+        this->comportamento = comportamento;
+    }
+
+    bool IsConduzir() const {
+        return conduzir;
+    }
+
+    void SetConduzir(bool conduzir) {
+        this->conduzir = conduzir;
+    }
+
+    string GetOrdem() const {
+        return ordem;
+    }
+
+    void SetOrdem(string ordem) {
+        this->ordem = ordem;
+    }
+
+    void acelarar();
+    void travar();
+    
+    
+
 
 };
 
