@@ -8,6 +8,11 @@
       <itemPath>Campeonato.h</itemPath>
       <itemPath>Carro.h</itemPath>
       <itemPath>Consola.h</itemPath>
+      <itemPath>CrazyDriver.h</itemPath>
+      <itemPath>DGV.h</itemPath>
+      <itemPath>Piloto.h</itemPath>
+      <itemPath>PilotoRapido.h</itemPath>
+      <itemPath>PilotoSurpresa.h</itemPath>
       <itemPath>Sim.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -21,6 +26,11 @@
       <itemPath>Campeonato.cpp</itemPath>
       <itemPath>Carro.cpp</itemPath>
       <itemPath>Consola.cpp</itemPath>
+      <itemPath>CrazyDriver.cpp</itemPath>
+      <itemPath>DGV.cpp</itemPath>
+      <itemPath>Piloto.cpp</itemPath>
+      <itemPath>PilotoRapido.cpp</itemPath>
+      <itemPath>PilotoSurpresa.cpp</itemPath>
       <itemPath>Sim.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -61,6 +71,26 @@
       <item path="Consola.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Consola.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CrazyDriver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CrazyDriver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DGV.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DGV.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Piloto.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Piloto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PilotoRapido.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PilotoRapido.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PilotoSurpresa.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PilotoSurpresa.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Sim.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -104,6 +134,26 @@
       <item path="Consola.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Consola.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CrazyDriver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CrazyDriver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DGV.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DGV.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Piloto.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Piloto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PilotoRapido.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PilotoRapido.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PilotoSurpresa.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PilotoSurpresa.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Sim.cpp" ex="false" tool="1" flavor2="0">
       </item>

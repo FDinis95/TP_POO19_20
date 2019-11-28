@@ -21,7 +21,7 @@ FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=Cygwin-Windows
+CND_PLATFORM=MinGW-Windows
 CND_DLIB_EXT=dll
 CND_CONF=Debug
 CND_DISTDIR=dist
@@ -39,6 +39,11 @@ OBJECTFILES= \
 	${OBJECTDIR}/Campeonato.o \
 	${OBJECTDIR}/Carro.o \
 	${OBJECTDIR}/Consola.o \
+	${OBJECTDIR}/CrazyDriver.o \
+	${OBJECTDIR}/DGV.o \
+	${OBJECTDIR}/Piloto.o \
+	${OBJECTDIR}/PilotoRapido.o \
+	${OBJECTDIR}/PilotoSurpresa.o \
 	${OBJECTDIR}/Sim.o \
 	${OBJECTDIR}/main.o
 
@@ -86,6 +91,31 @@ ${OBJECTDIR}/Consola.o: Consola.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Consola.o Consola.cpp
+
+${OBJECTDIR}/CrazyDriver.o: CrazyDriver.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CrazyDriver.o CrazyDriver.cpp
+
+${OBJECTDIR}/DGV.o: DGV.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DGV.o DGV.cpp
+
+${OBJECTDIR}/Piloto.o: Piloto.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Piloto.o Piloto.cpp
+
+${OBJECTDIR}/PilotoRapido.o: PilotoRapido.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PilotoRapido.o PilotoRapido.cpp
+
+${OBJECTDIR}/PilotoSurpresa.o: PilotoSurpresa.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PilotoSurpresa.o PilotoSurpresa.cpp
 
 ${OBJECTDIR}/Sim.o: Sim.cpp
 	${MKDIR} -p ${OBJECTDIR}
