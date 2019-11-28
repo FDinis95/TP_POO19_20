@@ -7,6 +7,7 @@
       <itemPath>Autodromo.h</itemPath>
       <itemPath>Campeonato.h</itemPath>
       <itemPath>Carro.h</itemPath>
+      <itemPath>Consola.h</itemPath>
       <itemPath>Sim.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -19,6 +20,7 @@
       <itemPath>Autodromo.cpp</itemPath>
       <itemPath>Campeonato.cpp</itemPath>
       <itemPath>Carro.cpp</itemPath>
+      <itemPath>Consola.cpp</itemPath>
       <itemPath>Sim.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -55,6 +57,10 @@
       <item path="Carro.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Carro.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Consola.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Consola.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Sim.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -94,6 +100,10 @@
       <item path="Carro.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Carro.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Consola.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Consola.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Sim.cpp" ex="false" tool="1" flavor2="0">
       </item>
