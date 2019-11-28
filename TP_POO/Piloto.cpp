@@ -24,3 +24,11 @@ Piloto::Piloto(const Piloto& orig) {
 Piloto::~Piloto() {
 }
 
+Piloto::acelarar() {
+    carro->AddVel();
+}
+
+Piloto::travar() {
+    carro->SubbVel();
+}
+
