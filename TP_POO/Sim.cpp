@@ -1,13 +1,8 @@
-#include <cstdlib>
-#include <string>
-#include <cstdio>
-#include <sstream>
-#include <iostream>
 #include "Sim.h"
 
-Sim::Sim() {}
+Sim::Sim(){}
 
-Sim::IniciaSim(){
+void Sim::IniciaSim(){
     
     string cmd, aux1, aux2, aux3, aux4, aux5;
     string temp;
@@ -21,7 +16,7 @@ Sim::IniciaSim(){
         aux4.clear();
         aux5.clear();
         
-        int valor1, valor2;
+        float valor1, valor2;
         cout << "Introduza o comando: " << "\n";
         getline(cin, cmd);
         
@@ -29,31 +24,76 @@ Sim::IniciaSim(){
         
         is >> temp >> aux1 >> aux2 >> aux3 >> aux4 >> aux5;
         
-        if(temp.compare("carregaP") == 0){
-            if(aux1.empty() == true)
-                cout << "Nao introduziu nenhum valor\n" << endl;
-            else
-                cout << "CarregaP " << aux1 << endl;
-//                carregaP(aux1);
+        if (temp.compare("carregaP") == 0) {
+
+            ifstream dados(aux1);
+            string linha;
+
+            if (!dados.is_open())
+                return;
+
+
+            while (!dados.eof()) {
+
+                getline(dados, linha);
+                istringstream iss(linha);
+
+                iss >> aux1 >> aux2;
+
+                dgv->CriaPF(aux1, aux2);
+            }
                 
         }else if(temp.compare("carregaC") == 0){
-            if(aux1.empty() == true)
-                cout << "Nao introduziu nenhum valor\n" << endl;
-            else
-                cout << "CarregaC " << aux1 << endl;
-                //carregaC(aux1);
+            
+         ifstream dados(aux1);
+            string linha;
+
+            if (!dados.is_open())
+                return;
+
+
+            while (!dados.eof()) {
+
+                getline(dados, linha);
+                istringstream iss(linha);
+
+                iss >> aux1 >> aux2 >> aux3 >> aux4;
+                valor1 = stof(aux1);
+                valor2 = stof(aux2);
+
+                dgv->CriaCF(valor1, valor2, aux3, aux4);
+            }
+//            if(aux1.empty() == true)
+//                cout << "Nao introduziu nenhum valor\n" << endl;
+//            else
+//                cout << "CarregaC " << aux1 << endl;
+//                //carregaC(aux1);
             
         }else if(temp.compare("carregaA") == 0){
-            if(aux1.empty() == true)
-                cout << "Nao introduziu nenhum valor\n" << endl;
-            else
-                cout << "CarregaA " << aux1 << endl;
-                //carregaA(aux1);
+            
+             ifstream dados(aux1);
+            string linha;
+
+            if (!dados.is_open())
+                return;
+
+
+            while (!dados.eof()) {
+
+                getline(dados, linha);
+                istringstream iss(linha);
+
+                iss >> aux1 >> aux2 >> aux3;
+                int valor3 = stoi(aux1);
+                int valor4 = stoi(aux2);
+
+                autodromo->CriaAF(valor3, valor4, aux3);
+            }
             
         }else if(temp.compare("cria") == 0){
             if(aux1.empty() != true && aux1.compare("c") == 0){
-                valor1 = stoi(aux2);
-                valor2 = stoi(aux3);
+                valor1 = stof(aux2);
+                valor2 = stof(aux3);
                 cout << "CriaC " << aux1 << " " << valor1 << " " << valor2 << " " << aux4 << " " << aux5 << endl;                
 //                criaC(valor1, valor2, aux4, aux5);
                 
@@ -135,23 +175,28 @@ Sim::IniciaSim(){
         }
         
     }while(temp.compare("sair") != 0);
+    
+    exit(EXIT_SUCCESS);
 }
 
-Sim::Modo2(){
+void Sim::Modo2(){
     
     string cmd, aux1, aux2;
     string temp;
+    Consola::clrscr();
     
     cout << "Modo 2\n" << endl;
     
     do{
+        
+        VerComandos();
         
         aux1.clear();
         aux2.clear();
         
         int valor1;
         
-        cout << "Introduza o comando: " << "\n";
+        cout << "\nIntroduza o comando: " << "\n";
         getline(cin, cmd);
         
         istringstream is(cmd);
@@ -162,8 +207,7 @@ Sim::Modo2(){
             if(aux1.empty() == true)
                 cout << "Nao introduziu nenhum valor\n" << endl;
             else
-                cout << "Campeonato " << aux1 << endl;
-//                IniciaCampeonato(aux1);
+                campeonato->IniciaCampeonato(aux1);
                 
         }else if(temp.compare("listacarros") == 0){
             cout << "Lista Carros: " << endl;
@@ -181,8 +225,7 @@ Sim::Modo2(){
             //CarregaTudo();
             
         }else if(temp.compare("corrida") == 0){
-            cout << "Corrida " << endl;
-            // IniciaCorrida();
+            MostrarPista();
             
         }else if(temp.compare("acidente") == 0){
             if(aux1.empty() == true)
@@ -211,7 +254,7 @@ Sim::Modo2(){
             else{
                 valor1 = stoi(aux1);
                 cout << "Passatempo " << valor1 << endl;
-                //Passatempo(valor1);
+                AtualizaPista();
             }
             
         }else if(temp.compare("log") == 0){
@@ -222,4 +265,134 @@ Sim::Modo2(){
     }while(temp.compare("sair") != 0);
     
     exit(EXIT_SUCCESS);
+}
+
+//void Sim::AtualizaPista(){
+//    
+//    Carro *carro = new Carro("Audi", 100, 90, 200);
+//    Carro *carro2 = new Carro("Tesla", 100, 90, 200);
+//    Carro *carro3 = new Carro("BMW", 100, 90, 200);
+//    Carro *carro4 = new Carro("Renault", 100, 90, 200);
+//    Carro *carro5 = new Carro("Citroen", 100, 90, 200);
+//    Autodromo *autod = new Autodromo("ISEC", 5, 25);
+//    Piloto *p = new Piloto("Francisco");
+//    
+//    carro2->AddPiloto(p);
+//    
+//    autod->AddToLugares(carro);
+//    autod->AddToLugares(carro2);
+//    autod->AddToLugares(carro3);
+//    autod->AddToLugares(carro4);
+//    autod->AddToLugares(carro5);
+//    
+//    int x = autod->GetNLugares();
+//    int y = autod->GetComprimento();
+//    int numCarros = autod->GetLugares().size();
+//    int t = 0;
+//    
+//    for(int i = 42; i < (x * 2) + 43; i += 2){
+//        for(int j = 0; j < y; j++){
+//            Consola::gotoxy(i, j + 1);
+//            cout << "|" << endl;
+//        }
+//    }
+//    
+//    Consola::gotoxy(42, y);
+//    for (int n = 42; n < (x * 2) + 42; n += 2) {
+//
+//        Consola::gotoxy(n + 1, autod->GetLugares().at(t)->GetPosY() + 1);
+//        putchar(autod->GetLugares().at(t)->GetID());
+//        t++;
+//    }
+//    
+//}
+
+void Sim::MostrarPista(){
+        
+    Carro *carro = new Carro("Audi", 100, 90, 200);
+    Carro *carro2 = new Carro("Tesla", 100, 90, 200);
+    Carro *carro3 = new Carro("BMW", 100, 90, 200);
+    Carro *carro4 = new Carro("Renault", 100, 90, 200);
+    Carro *carro5 = new Carro("Citroen", 100, 90, 200);
+    Autodromo *autod = new Autodromo("ISEC", 5, 25);
+    Piloto *p = new Piloto("Francisco");
+    
+    
+    carro2->AddPiloto(p);
+    
+    autod->AddToLugares(carro);
+    autod->AddToLugares(carro2);
+    autod->AddToLugares(carro3);
+    autod->AddToLugares(carro4);
+    autod->AddToLugares(carro5);
+    
+    int x = autod->GetNLugares();
+    int y = autod->GetComprimento();
+    int numCarros = autod->GetLugares().size();
+    int t = 0;
+    
+    for(int i = 42; i < (x * 2) + 43; i += 2){
+        for(int j = 0; j < y; j++){
+            Consola::gotoxy(i, j + 1);
+            cout << "|" << endl;
+        }
+    }
+    
+    Consola::gotoxy(42, y);
+    for (int n = 42; n < (x * 2) + 42; n += 2) {
+            
+            Consola::gotoxy(n + 1, y);
+            if(autod->GetLugares().at(t)->TemPiloto() == true){
+                putchar(toupper(autod->GetLugares().at(t)->GetID()));
+                autod->GetLugares().at(t)->SetPosY(autod->GetLugares().at(t)->GetPosY());
+            }else{
+                putchar(autod->GetLugares().at(t)->GetID());
+                autod->GetLugares().at(t)->SetPosY(autod->GetLugares().at(t)->GetPosY());
+
+            }
+            
+            autod->GetLugares().at(t)->SetPosY(autod->GetLugares().at(t)->GetPosY() - 1);
+            
+            t++;
+            
+    }
+    
+}
+
+
+void Sim::VerComandos(){
+    
+    Consola::gotoxy(0, 2);
+    cout << "Comandos para a simulacao " << endl;
+    
+    Consola::gotoxy(0, 3);
+    cout << "-> campeonato <A1> " << endl;
+    
+    Consola::gotoxy(0, 4);
+    cout << "-> listacarros " << endl;
+    
+    Consola::gotoxy(0, 5);
+    cout << "-> carregabat <letraCarro> <Q> " << endl;
+    
+    Consola::gotoxy(0, 6);
+    cout << "-> carregatudo " << endl;
+    
+    Consola::gotoxy(0, 7);
+    cout << "-> corrida " << endl;
+    
+    Consola::gotoxy(0, 8);
+    cout << "-> acidente <letraCarro> " << endl;
+    
+    Consola::gotoxy(0, 9);
+    cout << "-> stop <nomePiloto> " << endl;
+    
+    Consola::gotoxy(0, 10);
+    cout << "-> destroi <letraCarro> " << endl;
+    
+    Consola::gotoxy(0, 11);
+    cout << "-> passatempo <N> " << endl;
+    
+    Consola::gotoxy(0, 12);
+    cout << "-> log " << endl;
+    
 }

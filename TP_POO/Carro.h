@@ -6,6 +6,9 @@
 #include <cstdio>
 #include <iostream>
 #include <sstream>
+#include "Piloto.h"
+
+class Piloto;
 
 using namespace std;
 
@@ -17,18 +20,29 @@ class Carro {
     char ID = IDG;
     float bateria, capMaxima;
     bool movimento, emergencia, danificado;
-    int vel, velMax;
+    int vel, velMax, posY;
     
-//    Piloto *piloto;
+    Piloto *piloto;
      
 public:
     Carro(string m, float cpMaxima, float cpInicial, int vMax, string mod = "modelo base");
+    Carro(float cpInicial, float cpMaxima, string m, string mod = "modelo base");
+    
     Carro(const Carro& orig);
     virtual ~Carro();
     
     char GetID() const {
         return ID;
     }
+    
+    int GetPosY() const {
+        return posY;
+    }
+
+    void SetPosY(int posY) {
+        this->posY = posY;
+    }
+
 
     void SetID(char ID) {
         ID = ID;
@@ -118,24 +132,24 @@ public:
             this->velMax = velMax;
     }
     
-//    bool TemPiloto(){
-//        if(piloto == NULL)
-//            return true;
-//        else
-//            return false;
-//    }
+    bool TemPiloto(){
+        if(piloto == NULL)
+            return false;
+        else
+            return true;
+    }
     
-//    Piloto GetPiloto(){
-//        return piloto;
-//    }
+    Piloto* GetPiloto(){
+        return piloto;
+    }
     
-//    void AddPiloto(Piloto *p){
-//        this->piloto = p;
-//    }
+    void AddPiloto(Piloto *p){
+        this->piloto = p;
+    }
     
-//    void RemPiloto(){
-//        this->piloto = NULL;
-//    }
+    void RemPiloto(){
+        this->piloto = NULL;
+    }
 
     string getAsString()const;
 
