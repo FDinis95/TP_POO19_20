@@ -10,7 +10,11 @@
 
 class Carro;
 
+#include "Carro.h"
+
 using namespace std;
+
+class Carro;
 
 class Piloto {
     
@@ -20,12 +24,12 @@ class Piloto {
     string ordem;
     
     Carro *carro;
-    
+  
 public:
     Piloto(string n);
     Piloto(const Piloto& orig);
     virtual ~Piloto();
-    
+  
     string getNome(){
         return nome;
     }
@@ -40,8 +44,9 @@ public:
     }
     
 private:
+    void acelarar();
+    void travar();
 
 };
 
 #endif /* PILOTO_H */
-
