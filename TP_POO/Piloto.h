@@ -1,16 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   Piloto.h
- * Author: DanielDinis
- *
- * Created on 28 de Novembro de 2019, 18:46
- */
-
 #ifndef PILOTO_H
 #define PILOTO_H
 
@@ -19,6 +6,9 @@
 #include <cstdio>
 #include <iostream>
 #include <sstream>
+#include "Carro.h"
+
+class Carro;
 
 #include "Carro.h"
 
@@ -28,50 +18,35 @@ class Carro;
 
 class Piloto {
     
-    string const nome;
+    string nome;
     string comportamento;
     bool conduzir;
     string ordem;
     
     Carro *carro;
-    
-    
+  
 public:
     Piloto(string n);
     Piloto(const Piloto& orig);
     virtual ~Piloto();
+  
+    string getNome(){
+        return nome;
+    }
     
-    string GetComportamento() const {
-        return comportamento;
+    Carro* getCarro(){
+        return carro;
     }
-
-    void SetComportamento(string comportamento) {
-        this->comportamento = comportamento;
+    
+    void AddCarro(Carro *c){
+        
+        this->carro = c;
     }
-
-    bool IsConduzir() const {
-        return conduzir;
-    }
-
-    void SetConduzir(bool conduzir) {
-        this->conduzir = conduzir;
-    }
-
-    string GetOrdem() const {
-        return ordem;
-    }
-
-    void SetOrdem(string ordem) {
-        this->ordem = ordem;
-    }
-
+    
+private:
     void acelarar();
     void travar();
-    
-    
-
 
 };
 
 #endif /* PILOTO_H */
-

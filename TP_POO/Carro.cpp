@@ -19,6 +19,25 @@ Carro::Carro(string m, float cpMaxima, float cpInicial, int vMax, string mod) {
     
 }
 
+Carro::Carro(float cpInicial, float cpMaxima, string m, string mod) {
+    
+    marca = m;
+    modelo = mod;
+    capMaxima = cpMaxima;
+    bateria = cpInicial;
+    movimento = false;
+    emergencia = false;
+    danificado = false;
+    vel = 0;
+    velMax = 100;
+    posY = 25;
+    
+    if (GetID() > 'z')
+        ID = '?';
+    else
+        SetID(IDG++);
+}
+
 Carro::Carro(const Carro& orig) {
 }
 
