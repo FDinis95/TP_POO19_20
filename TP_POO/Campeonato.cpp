@@ -14,15 +14,10 @@ Campeonato::~Campeonato() {
 
 void Campeonato::IniciaCampeonato(string a){
     
-    for(int i = 0; i < GetAutodromo().size(); i++){
-        
-        cout << "\nNumero de Autodromos: " << GetAutodromo().size() << endl;
-        
+    for(int i = 0; i < GetAutodromo().size(); i++){        
         if(GetAutodromo().at(i)->GetNome() == a){
             
             for(int j = 0; j < GetAutodromo().at(i)->GetLugares().size(); j++){
-                
-                cout << "\nNumero de Lugares: " << GetAutodromo().at(j)->GetLugares().size() << endl;
                 
                 if(GetAutodromo().at(j)->GetLugares().at(j)->TemPiloto() == true)
                     GetAutodromo().at(j)->GetLugares().at(j)->SetBateria(GetAutodromo().at(j)->GetLugares().at(j)->GetCapMaxima());
@@ -45,8 +40,16 @@ string Campeonato::getAsString(){
     
     ostringstream oss;
     
-    for(int i = 0; i < GetAutodromo().size(); i++)
-        oss << "\nAutodromo " << i << " : " << GetAutodromo().at(i)->getAsString() << endl;
+    for(int i = 0; i < GetAutodromo().size(); i++){
+        
+        oss << "\nAutodromo " << i << ": " << GetAutodromo().at(i)->getAsString() << endl;
+        oss << "Carros dentro da pista: \n" << endl;
+        
+        for(int j = 0; j < GetAutodromo().at(i)->GetLugares().size(); j++){
+            
+            oss << "-> ID Carro: " <<  GetAutodromo().at(j)->GetLugares().at(j)->GetID() << endl;
+        }
+    }
     
     return oss.str();
     

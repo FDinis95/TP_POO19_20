@@ -31,6 +31,8 @@ public:
     void VerComandos();
     void MostrarPista();
     void AtualizaPista();
+    
+    void Listar();
 
 };
 
