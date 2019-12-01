@@ -4,7 +4,7 @@ Sim::Sim(){}
 
 void Sim::IniciaSim(){
     
-    string cmd, aux1, aux2, aux3, aux4, aux5;
+    string cmd, aux1, aux2, aux3, aux4, aux5, aux6;
     string temp;
     
     cout << "Modo 1\n" << endl;
@@ -15,14 +15,17 @@ void Sim::IniciaSim(){
         aux3.clear();
         aux4.clear();
         aux5.clear();
+        aux6.clear();
         
         float valor1, valor2;
+        int valor3;
+        char ch;
         cout << "Introduza o comando: " << "\n";
         getline(cin, cmd);
         
         istringstream is(cmd);
         
-        is >> temp >> aux1 >> aux2 >> aux3 >> aux4 >> aux5;
+        is >> temp >> aux1 >> aux2 >> aux3 >> aux4 >> aux5 >> aux6;
         
         if (temp.compare("carregaP") == 0) {
 
@@ -57,17 +60,13 @@ void Sim::IniciaSim(){
                 getline(dados, linha);
                 istringstream iss(linha);
 
-                iss >> aux1 >> aux2 >> aux3 >> aux4;
+                iss >> aux1 >> aux2 >> aux3 >> aux4 >> aux5;
                 valor1 = stof(aux1);
                 valor2 = stof(aux2);
+                valor3 = stoi(aux3);
 
-                dgv->CriaCF(valor1, valor2, aux3, aux4);
+                dgv->CriaCF(valor1, valor2, valor3, aux3, aux4);
             }
-//            if(aux1.empty() == true)
-//                cout << "Nao introduziu nenhum valor\n" << endl;
-//            else
-//                cout << "CarregaC " << aux1 << endl;
-//                //carregaC(aux1);
             
         }else if(temp.compare("carregaA") == 0){
             
@@ -87,41 +86,42 @@ void Sim::IniciaSim(){
                 int valor3 = stoi(aux1);
                 int valor4 = stoi(aux2);
 
-                autodromo->CriaAF(valor3, valor4, aux3);
+                campeonato->CriaAF(valor3, valor4, aux3);
             }
             
         }else if(temp.compare("cria") == 0){
             if(aux1.empty() != true && aux1.compare("c") == 0){
                 valor1 = stof(aux2);
                 valor2 = stof(aux3);
-                cout << "CriaC " << aux1 << " " << valor1 << " " << valor2 << " " << aux4 << " " << aux5 << endl;                
-//                criaC(valor1, valor2, aux4, aux5);
+                valor3 = stoi(aux4);
+                cout << "CriaC " << aux1 /*tipo carro */ << " " << valor1 << " " << valor2 << " " << valor3 << " " << aux5 << " " << aux6 << endl;                
+                dgv->CriaC(valor1, valor2, valor3, aux5, aux6);
                 
             }else if(aux1.empty() != true && aux1.compare("p") == 0){
                 cout << "CriaP " << aux1 << " " << aux2 << " " << aux3 << endl;
-//                criaP(aux2, aux3);
+                dgv->CriaP(aux2, aux3);
                 
             }else if(aux1.empty() != true && aux1.compare("a") == 0){
                 valor1 = stoi(aux2);
                 valor2 = stoi(aux3);
                 cout << "CriaA " << aux1 << " " << valor1 << " " << valor2 << " " << aux4 << endl;                
-//                criaA(valor1, valor2, aux4);
+                campeonato->CriaA(valor1, valor2, aux4);
                 
             }else
                 cout << "Nao introduziu nenhum valor\n" << endl; 
             
         }else if(temp.compare("apaga") == 0){
             if(aux1.empty() != true && aux1.compare("c") == 0){
-                cout << "ApagaC " << aux1 << " " << aux2 << endl;
-//                apagaC(aux2);
+                cout << "ApagaC " << aux1 << " " << ch << endl;
+                dgv->ApagaC(ch);
                 
             }else if(aux1.empty() != true && aux1.compare("p") == 0){
                 cout << "ApagaP " << aux1 << " " << aux2 << endl;
-//                apagaP(aux2);
+                dgv->ApagaP(aux2);
                 
             }else if(aux1.empty() != true && aux1.compare("a") == 0){
                 cout << "ApagaA " << aux1 << " " << aux2 << endl;
-//                apagaA(aux2);
+                campeonato->ApagaA(aux2);
                 
             }else
                 cout << "Nao introduziu nenhum valor\n" << endl;
@@ -131,21 +131,21 @@ void Sim::IniciaSim(){
                 cout << "Nao introduziu nenhum valor\n" << endl;
             
             else
-                cout << "EntraCarro " << aux1 << " " << aux2 << endl;
-                //EntraCarro(aux1, aux2);
+                cout << "EntraCarro " << ch << " " << aux2 << endl;
+                dgv->EntraCarro(ch, aux2);
                 
         }else if(temp.compare("saidocarro") == 0){
             if(aux1.empty() == true)
                 cout << "Nao introduziu nenhum valor\n" << endl;
             
             else
-                cout << "SaiCarro " << aux1 << endl;
-                //SaiCarro(aux1);
+                cout << "SaiCarro " << ch << endl;
+                dgv->SaiCarro(ch);
             
         }else if(temp.compare("lista") == 0){
             
             cout << "Listar\n" << endl;
-//            Listar();
+            Listar();
             
         }else if(temp.compare("savedgv") == 0){
             if(aux1.empty() == true)
@@ -254,7 +254,7 @@ void Sim::Modo2(){
             else{
                 valor1 = stoi(aux1);
                 cout << "Passatempo " << valor1 << endl;
-                AtualizaPista();
+//                AtualizaPista();
             }
             
         }else if(temp.compare("log") == 0){
@@ -359,7 +359,6 @@ void Sim::MostrarPista(){
     
 }
 
-
 void Sim::VerComandos(){
     
     Consola::gotoxy(0, 2);
@@ -395,4 +394,11 @@ void Sim::VerComandos(){
     Consola::gotoxy(0, 12);
     cout << "-> log " << endl;
     
+}
+
+void Sim::Listar(){
+    
+    cout << dgv->getAsString() << endl;
+    
+    cout << campeonato->getAsString() << endl;
 }

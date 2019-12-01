@@ -26,7 +26,6 @@ class Carro {
      
 public:
     Carro(string m, float cpMaxima, float cpInicial, int vMax, string mod = "modelo base");
-    Carro(float cpInicial, float cpMaxima, string m, string mod = "modelo base");
     
     Carro(const Carro& orig);
     virtual ~Carro();
@@ -151,7 +150,7 @@ public:
         this->piloto = NULL;
     }
 
-    string getAsString()const;
+    string getAsString();
 
 };
 

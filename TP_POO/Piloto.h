@@ -38,14 +38,20 @@ public:
         return carro;
     }
     
+    void RemCarro(){
+        
+        carro = NULL;
+    }
+    
     void AddCarro(Carro *c){
         
         this->carro = c;
     }
     
-private:
-    void acelarar();
+    void acelerar();
     void travar();
+    
+    string getAsString();
 
 };
 

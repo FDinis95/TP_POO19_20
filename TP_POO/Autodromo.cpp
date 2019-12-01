@@ -17,18 +17,11 @@ Autodromo::~Autodromo() {
 
 }
 
-void Autodromo::CriaAF(int aux1, int aux2, string aux3) {
-    
-    Autodromo *a = new Autodromo(aux3, aux1, aux2);
-    cout << a->getAsString() << endl;
-  
-}
-
 string Autodromo::getAsString() const{
     
     ostringstream oss;
     
-    oss << "Nome: " << GetNome() << "\nNumero de lugares: " << GetNLugares() << "\nComprimento: " << GetComprimento() << endl;
+    oss << "\n-> Nome: " << GetNome() << "\n-> Numero de lugares: " << GetNLugares() << "\n-> Comprimento: " << GetComprimento() << endl;
     
     return oss.str();
 }
