@@ -15,7 +15,9 @@ Campeonato::~Campeonato() {
 void Campeonato::IniciaCampeonato(string a){
     
     for(int i = 0; i < GetAutodromo().size(); i++){        
-        if(GetAutodromo().at(i)->GetNome() == a){
+        if((GetAutodromo().at(i)->GetNome().compare(a)) == 0){
+            
+            //mete todos os carros na pista ou garagem
             
             for(int j = 0; j < GetAutodromo().at(i)->GetLugares().size(); j++){
                 

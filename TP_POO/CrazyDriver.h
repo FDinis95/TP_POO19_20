@@ -12,17 +12,20 @@
 
 using namespace std;
 
-class CrazyDriver {
+class CrazyDriver : public Piloto {
     
     int inicio, lugar;
     float energia, energia_automovel;
     string nome;
+    bool conduzir;
 
+    Carro *carro;
     
 public:
+    
     CrazyDriver(string n);
-//    CrazyDriver(const CrazyDriver& orig);
-//    virtual ~CrazyDriver();
+    CrazyDriver(const CrazyDriver& orig);
+    virtual ~CrazyDriver();
 
 };
 

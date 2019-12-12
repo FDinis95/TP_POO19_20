@@ -17,6 +17,8 @@ Carro::Carro(string m, float cpMaxima, float cpInicial, int vMax, string mod) {
     else
         SetID(IDG++);
     
+    piloto = nullptr;
+    
 }
 
 Carro::Carro(const Carro& orig) {
@@ -32,6 +34,12 @@ string Carro::getAsString(){
     oss << "\n-> Marca: " << GetMarca() << "\n-> Modelo: " << GetModelo() << "\n-> ID: " << GetID() << "\n-> vel / velmax: " << GetVel() << " / " << GetVelMax() << "\n-> bat / batMax: "
             << GetBateria() << " / " << GetCapMaxima() << endl;
     
-    oss << "\nPiloto no carro: " << GetPiloto()->getNome() << endl;
+    if(GetPiloto() == nullptr){
+        oss << "\nNenhum piloto no carro" << endl;
+
+    }else
+        oss << "\nPiloto no carro: " << GetPiloto()->getNome() << endl;
+    
+    
     return oss.str();
 }

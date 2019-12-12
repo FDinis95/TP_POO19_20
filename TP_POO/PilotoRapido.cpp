@@ -1,9 +1,13 @@
 #include "PilotoRapido.h"
 
-PilotoRapido::PilotoRapido() {
+PilotoRapido::PilotoRapido(string n) : Piloto(n) {
+    
+    nome = n;
+    conduzir = true;
+    carro = nullptr;
 }
 
-PilotoRapido::PilotoRapido(const PilotoRapido& orig) {
+PilotoRapido::PilotoRapido(const PilotoRapido& orig) : Piloto(orig){
 }
 
 PilotoRapido::~PilotoRapido() {

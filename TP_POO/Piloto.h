@@ -40,13 +40,22 @@ public:
     
     void RemCarro(){
         
-        carro = NULL;
+        this->carro = nullptr;
     }
     
     void AddCarro(Carro *c){
         
         this->carro = c;
     }
+    
+    bool isConduzir() const {
+        return conduzir;
+    }
+
+    void setConduzir(bool conduzir) {
+        this->conduzir = conduzir;
+    }
+
     
     void acelerar();
     void travar();
