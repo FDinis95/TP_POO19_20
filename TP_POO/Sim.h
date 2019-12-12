@@ -19,9 +19,9 @@ class Autodromo;
 
 class Sim {
     
-    DGV *dgv;
-    Autodromo *autodromo;
-    Campeonato *campeonato;
+    DGV *dgv = new DGV;
+    Autodromo *autodromo = new Autodromo("A1", 5, 200);
+    Campeonato *campeonato = new Campeonato;
     
 public:
 

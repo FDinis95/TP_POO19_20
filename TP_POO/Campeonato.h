@@ -3,6 +3,7 @@
 
 #include <cstdlib>
 #include <string>
+#include <cstring>
 #include <cstdio>
 #include <iostream>
 #include <sstream>
@@ -36,8 +37,16 @@ public:
     
     void CriaA(int valor1, int valor2, string aux1){
         Autodromo *a = new Autodromo(aux1, valor1, valor2);
-        cout << a->getAsString() << endl;
         
+        for(int i = 0; i < autodromosDB.size(); i++){
+            if(autodromosDB.at(i)->GetNome() == aux1){
+                
+                cout << "Ja existe um autodromo com esse nome" << endl;
+                return;
+            }
+        }
+        
+        cout << a->getAsString() << endl;
         autodromosDB.push_back(a);
     }
     
@@ -46,7 +55,8 @@ public:
         for(int i = 0; i < autodromosDB.size(); i++){
             
             if(autodromosDB.at(i)->GetNome() == aux2){
-//                autodromosDB.erase(i);
+                autodromosDB.erase(autodromosDB.begin() + i);
+                
             }
         }
     }
@@ -66,6 +76,42 @@ public:
         for(int i = 0; i < autodromosDB.size(); i++)
             if(autodromosDB.at(i) == a)
                 autodromosDB.erase(autodromosDB.begin() + i);
+    }
+    
+    void CarregaBateriaQ(char aux1, float aux2){
+        
+        for(int i = 0; i < autodromosDB.size(); i++){
+            for(int j = 0; j < autodromosDB.at(i)->GetLugares().size(); j++){
+                
+                if(autodromosDB.at(i)->GetLugares().at(j)->GetID() == aux1){
+                    autodromosDB.at(i)->GetLugares().at(j)->SetBateriaQ(aux2);
+                    
+                }
+            }
+        }
+        
+    }
+    
+    void ProvocaAcidente(char aux1){
+        
+        for(int i = 0; i < autodromosDB.size(); i++){
+            for(int j = 0; j < autodromosDB.at(i)->GetLugares().size(); j++){
+                
+                if(autodromosDB.at(i)->GetLugares().at(j)->GetID() == aux1)
+                    autodromosDB.at(i)->GetLugares().at(j)->SetDanificado(true);
+            }
+        }
+    }
+    
+    void ParaCarro(string aux1){
+        
+        for(int i = 0; i < autodromosDB.size(); i++){
+            for(int j = 0; j < autodromosDB.at(i)->GetLugares().size(); j++){
+                
+                if(autodromosDB.at(i)->GetLugares().at(j)->GetPiloto()->getNome() == aux1)
+                    autodromosDB.at(i)->GetLugares().at(j)->GetPiloto()->setConduzir(false);
+            }
+        }
     }
     
     string getAsString();

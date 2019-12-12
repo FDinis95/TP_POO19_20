@@ -57,6 +57,17 @@ public:
         else
             this->bateria = bateria;
     }
+    
+    void SetBateriaQ(float bateria) {
+        if(bateria > GetCapMaxima())
+            this->bateria = GetCapMaxima();
+        
+        else if(this->bateria + bateria > GetCapMaxima())
+            this->bateria = GetCapMaxima();
+        
+        else
+            this->bateria += bateria;
+    }
 
     float GetCapMaxima() const {
         return capMaxima;
@@ -147,7 +158,7 @@ public:
     }
     
     void RemPiloto(){
-        this->piloto = NULL;
+        this->piloto = nullptr;
     }
 
     string getAsString();

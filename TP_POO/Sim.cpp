@@ -18,8 +18,8 @@ void Sim::IniciaSim(){
         aux6.clear();
         
         float valor1, valor2;
-        int valor3;
-        char ch;
+        int valor3, valor4, valor5;
+        char ch[2];
         cout << "Introduza o comando: " << "\n";
         getline(cin, cmd);
         
@@ -65,7 +65,7 @@ void Sim::IniciaSim(){
                 valor2 = stof(aux2);
                 valor3 = stoi(aux3);
 
-                dgv->CriaCF(valor1, valor2, valor3, aux3, aux4);
+                dgv->CriaCF(valor1, valor2, valor3, aux4, aux5);
             }
             
         }else if(temp.compare("carregaA") == 0){
@@ -102,18 +102,20 @@ void Sim::IniciaSim(){
                 dgv->CriaP(aux2, aux3);
                 
             }else if(aux1.empty() != true && aux1.compare("a") == 0){
-                valor1 = stoi(aux2);
-                valor2 = stoi(aux3);
-                cout << "CriaA " << aux1 << " " << valor1 << " " << valor2 << " " << aux4 << endl;                
-                campeonato->CriaA(valor1, valor2, aux4);
+                valor4 = stoi(aux2);
+                valor5 = stoi(aux3);
+                cout << "CriaA " << aux1 << " " << valor4 << " " << valor5 << " " << aux4 << endl;                
+                campeonato->CriaA(valor4, valor5, aux4);
                 
             }else
                 cout << "Nao introduziu nenhum valor\n" << endl; 
             
         }else if(temp.compare("apaga") == 0){
             if(aux1.empty() != true && aux1.compare("c") == 0){
+                
+                copy(aux2.begin(), aux2.end(), ch);
                 cout << "ApagaC " << aux1 << " " << ch << endl;
-                dgv->ApagaC(ch);
+                dgv->ApagaC(*ch);
                 
             }else if(aux1.empty() != true && aux1.compare("p") == 0){
                 cout << "ApagaP " << aux1 << " " << aux2 << endl;
@@ -130,17 +132,19 @@ void Sim::IniciaSim(){
             if(aux1.empty() == true || aux2.empty() == true)
                 cout << "Nao introduziu nenhum valor\n" << endl;
             
-            else
-                cout << "EntraCarro " << ch << " " << aux2 << endl;
-                dgv->EntraCarro(ch, aux2);
+            else{
+                copy(aux1.begin(), aux1.end(), ch);
+                dgv->EntraCarro(*ch, aux2);
+            }
                 
         }else if(temp.compare("saidocarro") == 0){
             if(aux1.empty() == true)
                 cout << "Nao introduziu nenhum valor\n" << endl;
             
-            else
-                cout << "SaiCarro " << ch << endl;
-                dgv->SaiCarro(ch);
+            else{
+                copy(aux1.begin(), aux1.end(), ch);
+                dgv->SaiCarro(*ch);
+            }
             
         }else if(temp.compare("lista") == 0){
             
@@ -186,15 +190,16 @@ void Sim::Modo2(){
     Consola::clrscr();
     
     cout << "Modo 2\n" << endl;
+    VerComandos();
     
     do{
-        
-        VerComandos();
         
         aux1.clear();
         aux2.clear();
         
         int valor1;
+        float valor2;
+        char ch[2];
         
         cout << "\nIntroduza o comando: " << "\n";
         getline(cin, cmd);
@@ -210,19 +215,22 @@ void Sim::Modo2(){
                 campeonato->IniciaCampeonato(aux1);
                 
         }else if(temp.compare("listacarros") == 0){
-            cout << "Lista Carros: " << endl;
-            //ListaCarros();
+            dgv->ListaCarros();
         
         }else if(temp.compare("carregabat") == 0){
             if(aux1.empty() == true)
                 cout << "Nao introduziu nenhum valor\n" << endl;
-            else
-                cout << "Carrega Bateria: " << aux1 << " " << aux2 << endl;
-                // CarregaBateria(aux1, aux2); 
+            
+            else{
+                valor2 = stof(aux2);
+                copy(aux1.begin(), aux1.end(), ch);
+                cout << "Carrega Bateria: " << ch << " " << valor2 << endl;
+                campeonato->CarregaBateriaQ(*ch, valor2);
+            }   
             
         }else if(temp.compare("carregatudo") == 0){
             cout << "Carrega Tudo " << endl;
-            //CarregaTudo();
+            dgv->CarregaTudo();
             
         }else if(temp.compare("corrida") == 0){
             MostrarPista();
@@ -231,22 +239,25 @@ void Sim::Modo2(){
             if(aux1.empty() == true)
                 cout << "Nao introduziu nenhum valor\n" << endl;
             else
-                cout << "Acidente " << aux1 << endl;
-                // ProvocaAcidente(aux1);
+                copy(aux1.begin(), aux1.end(), ch);
+                cout << "Acidente " << ch << endl;
+                campeonato->ProvocaAcidente(*ch);
             
         }else if(temp.compare("stop") == 0){
             if(aux1.empty() == true)
                 cout << "Nao introduziu nenhum valor\n" << endl;
             else
                 cout << "Stop " << aux1 << endl;
-                // ParaCarro(aux1);)
+                campeonato->ParaCarro(aux1);
             
         }else if(temp.compare("destroi") == 0){
             if(aux1.empty() == true)
                 cout << "Nao introduziu nenhum valor\n" << endl;
-            else
+            else{
+                copy(aux1.begin(), aux1.end(), ch);
                 cout << "Destroi " << aux1 << endl;
-                //DestroiCarro(aux1);
+                dgv->ApagaC(*ch);
+            }
             
         }else if(temp.compare("passatempo") == 0){
             if(aux1.empty() == true)
@@ -309,26 +320,26 @@ void Sim::Modo2(){
 
 void Sim::MostrarPista(){
         
+    autodromo = campeonato->GetAutodromo().at(0);
     Carro *carro = new Carro("Audi", 100, 90, 200);
     Carro *carro2 = new Carro("Tesla", 100, 90, 200);
     Carro *carro3 = new Carro("BMW", 100, 90, 200);
     Carro *carro4 = new Carro("Renault", 100, 90, 200);
     Carro *carro5 = new Carro("Citroen", 100, 90, 200);
-    Autodromo *autod = new Autodromo("ISEC", 5, 25);
     Piloto *p = new Piloto("Francisco");
     
+    carro->AddPiloto(p);
     
-    carro2->AddPiloto(p);
+    autodromo->AddToLugares(carro);
+    autodromo->AddToLugares(carro2);
+    autodromo->AddToLugares(carro3);
+    autodromo->AddToLugares(carro4);
+    autodromo->AddToLugares(carro5);
     
-    autod->AddToLugares(carro);
-    autod->AddToLugares(carro2);
-    autod->AddToLugares(carro3);
-    autod->AddToLugares(carro4);
-    autod->AddToLugares(carro5);
     
-    int x = autod->GetNLugares();
-    int y = autod->GetComprimento();
-    int numCarros = autod->GetLugares().size();
+    int x = autodromo->GetNLugares();
+    int y = autodromo->GetComprimento();
+    int numCarros = autodromo->GetLugares().size();
     int t = 0;
     
     for(int i = 42; i < (x * 2) + 43; i += 2){
@@ -342,21 +353,18 @@ void Sim::MostrarPista(){
     for (int n = 42; n < (x * 2) + 42; n += 2) {
             
             Consola::gotoxy(n + 1, y);
-            if(autod->GetLugares().at(t)->TemPiloto() == true){
-                putchar(toupper(autod->GetLugares().at(t)->GetID()));
-                autod->GetLugares().at(t)->SetPosY(autod->GetLugares().at(t)->GetPosY());
+            if(autodromo->GetLugares().at(t)->TemPiloto() == true){
+                putchar(toupper(autodromo->GetLugares().at(t)->GetID()));
+                autodromo->GetLugares().at(t)->SetPosY(autodromo->GetLugares().at(t)->GetPosY());
             }else{
-                putchar(autod->GetLugares().at(t)->GetID());
-                autod->GetLugares().at(t)->SetPosY(autod->GetLugares().at(t)->GetPosY());
+                putchar(autodromo->GetLugares().at(t)->GetID());
+                autodromo->GetLugares().at(t)->SetPosY(autodromo->GetLugares().at(t)->GetPosY());
 
             }
             
-            autod->GetLugares().at(t)->SetPosY(autod->GetLugares().at(t)->GetPosY() - 1);
-            
-            t++;
-            
+            autodromo->GetLugares().at(t)->SetPosY(autodromo->GetLugares().at(t)->GetPosY() - 1);
+            t++;           
     }
-    
 }
 
 void Sim::VerComandos(){

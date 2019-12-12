@@ -1,9 +1,25 @@
 #ifndef PILOTORAPIDO_H
 #define PILOTORAPIDO_H
 
-class PilotoRapido {
+#include <cstdlib>
+#include <string>
+#include <cstdio>
+#include <iostream>
+#include <sstream>
+
+#include "Piloto.h"
+
+class PilotoRapido : public Piloto {
+    
+    string nome;
+    string comportamento;
+    bool conduzir;
+    string ordem;
+    
+    Carro *carro;
+    
 public:
-    PilotoRapido();
+    PilotoRapido(string n);
     PilotoRapido(const PilotoRapido& orig);
     virtual ~PilotoRapido();
 private:

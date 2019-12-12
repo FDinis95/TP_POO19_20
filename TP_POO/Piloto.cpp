@@ -3,6 +3,8 @@
 Piloto::Piloto(string n) {
 
     nome = n;
+    conduzir = true;
+    carro = nullptr;
 }
 
 Piloto::Piloto(const Piloto& orig) {
