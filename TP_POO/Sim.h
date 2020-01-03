@@ -29,6 +29,7 @@ public:
     void IniciaSim();
     void Modo2();
     void VerComandos();
+    void EntraCorrida();
     void MostrarPista();
     void AtualizaPista();
     

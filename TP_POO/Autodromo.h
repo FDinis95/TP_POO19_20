@@ -50,10 +50,15 @@ public:
 
     void AddToLugares(Carro *c) {
         // TODO - Verificações
-        for(int i = 0; i < garagem.size(); i++){
-            if(garagem.at(i)->GetPiloto() != nullptr)
+        
+         if(c->GetPiloto() != nullptr)
                 lugares.push_back(c);
-        }
+         
+         
+//        for(int i = 0; i < garagem.size(); i++){
+//            if(garagem.at(i)->GetPiloto() != nullptr)
+//                lugares.push_back(c);
+//        }
         
         
     }

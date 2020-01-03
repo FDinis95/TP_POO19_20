@@ -12,10 +12,10 @@ class Piloto;
 
 using namespace std;
 
-static char IDG = 'a';
+//static char IDG = 'a';
 
 class Carro {
-    
+    static char IDG;
     string marca, modelo;
     char ID = IDG;
     float bateria, capMaxima;
@@ -59,14 +59,15 @@ public:
     }
     
     void SetBateriaQ(float bateria) {
-        if(bateria > GetCapMaxima())
+        if(bateria > GetCapMaxima()){
             this->bateria = GetCapMaxima();
         
-        else if(this->bateria + bateria > GetCapMaxima())
+        }else if(this->bateria + bateria > GetCapMaxima()){
             this->bateria = GetCapMaxima();
         
-        else
+        }else{
             this->bateria += bateria;
+        }
     }
 
     float GetCapMaxima() const {
@@ -162,6 +163,10 @@ public:
     }
 
     string getAsString();
+    
+    void passatempo(){
+        posY += vel;
+    }
 
 };
 

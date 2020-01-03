@@ -41,15 +41,16 @@ string Campeonato::getAsString(){
     
     
     ostringstream oss;
+    oss<< "Campeonato   size" << autodromosDB.size() << endl;
     
-    for(int i = 0; i < GetAutodromo().size(); i++){
+    for(int i = 0; i < autodromosDB.size(); i++){
         
-        oss << "\nAutodromo " << i << ": " << GetAutodromo().at(i)->getAsString() << endl;
+        oss << "\nAutodromo " << i << ": " << autodromosDB.at(i)->getAsString() << endl;
         oss << "Carros dentro da pista: \n" << endl;
         
-        for(int j = 0; j < GetAutodromo().at(i)->GetLugares().size(); j++){
+        for(int j = 0; j < autodromosDB.at(i)->GetLugares().size(); j++){
             
-            oss << "-> ID Carro: " <<  GetAutodromo().at(j)->GetLugares().at(j)->GetID() << endl;
+            oss << "-> ID Carro: " <<  autodromosDB.at(i)->GetLugares().at(j)->GetID() << endl;
         }
     }
     

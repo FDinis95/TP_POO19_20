@@ -21,7 +21,7 @@ void Sim::IniciaSim(){
         int valor3, valor4, valor5;
         char ch[2];
         cout << "Introduza o comando: " << "\n";
-        getline(cin, cmd);
+            getline(cin, cmd);
         
         istringstream is(cmd);
         
@@ -61,6 +61,9 @@ void Sim::IniciaSim(){
                 istringstream iss(linha);
 
                 iss >> aux1 >> aux2 >> aux3 >> aux4 >> aux5;
+                if(!iss){
+                    continue;
+                }
                 valor1 = stof(aux1);
                 valor2 = stof(aux2);
                 valor3 = stoi(aux3);
@@ -190,6 +193,7 @@ void Sim::Modo2(){
     Consola::clrscr();
     
     cout << "Modo 2\n" << endl;
+    campeonato->EntraCorrida(dgv);
     VerComandos();
     
     do{
@@ -215,7 +219,7 @@ void Sim::Modo2(){
                 campeonato->IniciaCampeonato(aux1);
                 
         }else if(temp.compare("listacarros") == 0){
-            dgv->ListaCarros();
+            cout << campeonato->getAsString() << endl;
         
         }else if(temp.compare("carregabat") == 0){
             if(aux1.empty() == true)
@@ -265,7 +269,7 @@ void Sim::Modo2(){
             else{
                 valor1 = stoi(aux1);
                 cout << "Passatempo " << valor1 << endl;
-//                AtualizaPista();
+                AtualizaPista();
             }
             
         }else if(temp.compare("log") == 0){
@@ -318,23 +322,27 @@ void Sim::Modo2(){
 //    
 //}
 
+void Sim::AtualizaPista(){
+    MostrarPista();
+}  
+
 void Sim::MostrarPista(){
         
     autodromo = campeonato->GetAutodromo().at(0);
-    Carro *carro = new Carro("Audi", 100, 90, 200);
-    Carro *carro2 = new Carro("Tesla", 100, 90, 200);
-    Carro *carro3 = new Carro("BMW", 100, 90, 200);
-    Carro *carro4 = new Carro("Renault", 100, 90, 200);
-    Carro *carro5 = new Carro("Citroen", 100, 90, 200);
-    Piloto *p = new Piloto("Francisco");
+//    Carro *carro = new Carro("Audi", 100, 90, 200);
+//    Carro *carro2 = new Carro("Tesla", 100, 90, 200);
+//    Carro *carro3 = new Carro("BMW", 100, 90, 200);
+//    Carro *carro4 = new Carro("Renault", 100, 90, 200);
+//    Carro *carro5 = new Carro("Citroen", 100, 90, 200);
+//    Piloto *p = new Piloto("Francisco");
     
-    carro->AddPiloto(p);
-    
-    autodromo->AddToLugares(carro);
-    autodromo->AddToLugares(carro2);
-    autodromo->AddToLugares(carro3);
-    autodromo->AddToLugares(carro4);
-    autodromo->AddToLugares(carro5);
+//    carro->AddPiloto(p);
+//    
+//    autodromo->AddToLugares(carro);
+//    autodromo->AddToLugares(carro2);
+//    autodromo->AddToLugares(carro3);
+//    autodromo->AddToLugares(carro4);
+//    autodromo->AddToLugares(carro5);
     
     
     int x = autodromo->GetNLugares();
@@ -349,22 +357,34 @@ void Sim::MostrarPista(){
         }
     }
     
+    
+    for(Carro * c: autodromo->GetLugares()){
+        c->passatempo();
+    }
+    
+    
     Consola::gotoxy(42, y);
     for (int n = 42; n < (x * 2) + 42; n += 2) {
             
-            Consola::gotoxy(n + 1, y);
+//            Consola::gotoxy(n + 1, y);
+            Consola::gotoxy(n + 1, y - autodromo->GetLugares().at(t)->GetPosY());
+//        cout <<"posy " << autodromo->GetLugares().at(t)->GetPosY() << endl;
+//             Consola::gotoxy(n + 1, y - 2);
             if(autodromo->GetLugares().at(t)->TemPiloto() == true){
                 putchar(toupper(autodromo->GetLugares().at(t)->GetID()));
-                autodromo->GetLugares().at(t)->SetPosY(autodromo->GetLugares().at(t)->GetPosY());
+//                autodromo->GetLugares().at(t)->SetPosY(autodromo->GetLugares().at(t)->GetPosY());
             }else{
                 putchar(autodromo->GetLugares().at(t)->GetID());
-                autodromo->GetLugares().at(t)->SetPosY(autodromo->GetLugares().at(t)->GetPosY());
+//                autodromo->GetLugares().at(t)->SetPosY(autodromo->GetLugares().at(t)->GetPosY());
 
             }
-            
-            autodromo->GetLugares().at(t)->SetPosY(autodromo->GetLugares().at(t)->GetPosY() - 1);
+//            autodromo->GetLugares().at(t)->SetPosY(autodromo->GetLugares().at(t)->GetPosY() - 1);
+//            autodromo->GetLugares().at(t)->passatempo();
             t++;           
     }
+   
+    
+    
 }
 
 void Sim::VerComandos(){
