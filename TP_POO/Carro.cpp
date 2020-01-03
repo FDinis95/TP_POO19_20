@@ -1,5 +1,5 @@
 #include "Carro.h"
-
+ char Carro::IDG = 'a';
 Carro::Carro(string m, float cpMaxima, float cpInicial, int vMax, string mod) {
 
     marca = m;
@@ -18,7 +18,7 @@ Carro::Carro(string m, float cpMaxima, float cpInicial, int vMax, string mod) {
         SetID(IDG++);
     
     piloto = nullptr;
-    
+    posY = 0;
 }
 
 Carro::Carro(const Carro& orig) {
